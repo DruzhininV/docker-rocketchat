@@ -9,7 +9,8 @@ services:
     - db_dump:/dump
 
   rocketchat:
-    image: rocket.chat:0.68.5
+    build: .
+    image: rocket.chat
     container_name: rocketchat
     environment:
       ROOT_URL: 'http://localhost'
