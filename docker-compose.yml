@@ -2,13 +2,15 @@ version: '3.6'
 services:
   db:
     image: mongo:3.2
+    container_name: rocketchat_db
     entrypoint: mongod --smallfiles
     volumes:
     - db_data:/data/db
     - db_dump:/dump
 
   rocketchat:
-    image: rocket.chat:latest
+    image: rocket.chat:0.68.5
+    container_name: rocketchat
     environment:
       ROOT_URL: 'http://localhost'
     depends_on:
