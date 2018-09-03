@@ -3,9 +3,26 @@ services:
   db:
     image: mongo:3.2
     entrypoint: mongod --smallfiles
+    volumes:
+    - db_data:/data/db
+    - db_dump:/dump
+
   rocketchat:
     image: rocket.chat:latest
     environment:
       ROOT_URL: 'http://localhost'
+    depends_on:
+    - db
     ports:
-      - "80:3000"
+      - "3000:3000"
+
+volumes:
+  db_data:
+    driver: local
+  db_dump:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
