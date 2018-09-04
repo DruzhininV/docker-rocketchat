@@ -16,8 +16,8 @@ services:
       ROOT_URL: 'http://localhost'
     depends_on:
     - db
-    ports:
-      - "3000:3000"
+    expose:
+    - 3000
 
 volumes:
   db_data:
